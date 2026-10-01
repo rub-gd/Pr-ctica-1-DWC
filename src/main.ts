@@ -10,6 +10,15 @@ async function ejecutarPrueba() {
 
         console.log(`¿Asistencia registrada?: ${asistencia}`);
 
+        await crm.registrarSancion(
+            'alumno1',
+            'prof1',
+            'comportamiento',
+            'Ha tenido un mal comportamiento en clase'
+        );
+
+        console.log("Sanción registrada correctamente");
+
     } catch (error) {
         console.error("Error en la ejecución:", error);
     }
