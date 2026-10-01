@@ -11,18 +11,48 @@ export class CRMController {
      * Registra una falta, retraso o asistencia en el sistema de forma asíncrona.
      */
     public async registrarAsistencia(alumnoId: string, profesorId: string, franja: string, estado: EstadoAsistencia): Promise<boolean> {
-        // TODO: El alumno debe implementar la simulación de retraso de red (setTimeout con Promise)
-        // y añadir el registro usando el servicio de almacenamiento.
-        throw new Error('Método no implementado');
-    }
+    // TODO: El alumno debe implementar la simulación de retraso de red (setTimeout con Promise)
+    // y añadir el registro usando el servicio de almacenamiento.
+
+    await new Promise<void>((resolve) => {
+        setTimeout(resolve, 500);
+    });
+
+    const nuevaAsistencia: Asistencia = {
+        id: crypto.randomUUID(),
+        alumnoId: alumnoId,
+        profesorId: profesorId,
+        fecha: new Date().toISOString().split('T')[0],
+        franja: franja,
+        estado: estado
+    };
+
+    this.asistenciaStorage.add(nuevaAsistencia);
+
+    return true;
+}
+
 
     /**
      * Registra una sanción disciplinaria.
      */
-    public async registrarSancion(alumnoId: string, profesorId: string, tipo: TipoSancion, descripcion: string): Promise<void> {
-        // TODO: Implementar lógica de inserción asíncrona.
-        throw new Error('Método no implementado');
-    }
+public async registrarSancion(alumnoId: string, profesorId: string, tipo: TipoSancion, descripcion: string): Promise<void> {
+    // TODO: Implementar lógica de inserción asíncrona.
+
+    await new Promise<void>((resolve) => {
+        setTimeout(resolve, 500);
+    });
+
+    const nuevaSancion: Sancion = {
+        id: crypto.randomUUID(),
+        alumnoId: alumnoId,
+        profesorId: profesorId,
+        fecha: new Date().toISOString().split('T')[0],
+        tipo: tipo,
+        descripcion: descripcion
+    };
+    this.sancionesStorage.add(nuevaSancion);
+}
 
     /**
      * VERIFICACIÓN CRÍTICA: Comprueba si un profesor ya tiene una clase asignada en el mismo día y hora.
